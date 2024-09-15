@@ -1,7 +1,8 @@
 import pyaudio
-import wave
 import keyboard
 import replicate
+import io
+import wave
 
 def record_audio():
     audio = pyaudio.PyAudio()
@@ -25,17 +26,19 @@ def record_audio():
     stream.stop_stream()
     stream.close()
     audio.terminate()
-    wf = wave.open("output.wav", 'wb')
+    recognize_speech(frames)
+
+def recognize_speech(frames):
+    wav_file = io.BytesIO()
+    wf = wave.open(wav_file, 'wb')
     wf.setnchannels(1)
-    wf.setsampwidth(audio.get_sample_size(pyaudio.paInt16))
+    wf.setsampwidth(2)
     wf.setframerate(44100)
     wf.writeframes(b''.join(frames))
     wf.close()
-    recognize_speech()
-
-def recognize_speech():
+    wav_file.seek(0)
     input = {
-        "audio": "output.wav"
+        "audio": wav_file
     }
     output = replicate.run(
         "openai/whisper:cdd97b257f93cb89dede1c7584e3f3dfc969571b357dbcee08e793740bedd854",
