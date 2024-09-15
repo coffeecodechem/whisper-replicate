@@ -5,18 +5,16 @@ import keyboard
 def record_audio():
     audio = pyaudio.PyAudio()
     stream = audio.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True, frames_per_buffer=1024)
-    print("Press 'r' to start/stop recording, 'q' to quit.")
+    print("Press 'r' to start recording, 's' to stop recording, 'q' to quit.")
     recording = False
     frames = []
     while True:
         if keyboard.is_pressed('r') and not recording:
             print("Recording...")
             recording = True
-        elif keyboard.is_pressed('r') and recording:
+        elif keyboard.is_pressed('s') and recording:
             print("Stopping recording...")
             recording = False
-            while keyboard.is_pressed('r'):
-                pass
         elif keyboard.is_pressed('q'):
             print("Quitting...")
             break
