@@ -9,13 +9,14 @@ def record_audio():
     recording = False
     frames = []
     while True:
-        if keyboard.is_pressed('r'):
-            if not recording:
-                print("Recording...")
-                recording = True
-            else:
-                print("Stopping recording...")
-                recording = False
+        if keyboard.is_pressed('r') and not recording:
+            print("Recording...")
+            recording = True
+        elif keyboard.is_pressed('r') and recording:
+            print("Stopping recording...")
+            recording = False
+            while keyboard.is_pressed('r'):
+                pass
         elif keyboard.is_pressed('q'):
             print("Quitting...")
             break
