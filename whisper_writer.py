@@ -44,7 +44,7 @@ def recognize_speech(frames):
         "openai/whisper:cdd97b257f93cb89dede1c7584e3f3dfc969571b357dbcee08e793740bedd854",
         input=input
     )
-    print(output)
+    print(output['segments'][0]['text'])
 
 if __name__ == "__main__":
     record_audio()
