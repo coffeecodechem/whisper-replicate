@@ -1,6 +1,7 @@
 import pyaudio
 import wave
 import keyboard
+import replicate
 
 def record_audio():
     audio = pyaudio.PyAudio()
@@ -30,6 +31,17 @@ def record_audio():
     wf.setframerate(44100)
     wf.writeframes(b''.join(frames))
     wf.close()
+    recognize_speech()
+
+def recognize_speech():
+    input = {
+        "audio": "output.wav"
+    }
+    output = replicate.run(
+        "openai/whisper:cdd97b257f93cb89dede1c7584e3f3dfc969571b357dbcee08e793740bedd854",
+        input=input
+    )
+    print(output)
 
 if __name__ == "__main__":
     record_audio()
