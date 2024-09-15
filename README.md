@@ -8,6 +8,7 @@ A simple program that uses OpenAI's Whisper model hosted by Replicate.com to tra
 * `requirements.txt` installed using pip (recommended to use a virtual environment)
 * PyAudio installed with additional requirements (see PyAudio documentation)
 * REPLICATE_API_TOKEN environment variable set (see below)
+* I could not run this in WSL because of audio input complication, powershell7 was fine though
 
 ## Installation
 
