@@ -11,7 +11,7 @@ This function records audio from the user's microphone. It uses the `pyaudio` li
 
 ### `recognize_speech(frames)`
 
-This function takes the recorded audio data and uses the Whisper model to recognize speech. It creates a WAV file in memory using the `io` and `wave` libraries, and then passes this file to the Whisper model using the `replicate` library. The function prints the output from the Whisper model, which is the recognized text.
+This function takes the recorded audio data and uses the OpenAI Whisper model via the Replicate library to recognize speech. It creates a WAV file in memory using the `io` and `wave` libraries, and then passes this file to the Whisper model using the `replicate` library. The function prints the output from the Whisper model, which is the recognized text.
 
 ## Program Flow
 
